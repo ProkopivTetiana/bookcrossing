@@ -3,10 +3,13 @@ import { NavLink } from "react-router-dom";
 
 import Button from "../Button/Button";
 import Input from "../Input";
-import User from "../../../assets/user.svg";
+// import User from "../../../assets/user.svg";
+import { ReactComponent as User } from "../../../assets/user.svg";
+
 import Logo from "../Logo/Logo";
 import CategorySidebar from "./components/CategorySidebar/CategorySidebar";
 
+import ProfileSidebar from "./components/ProfileSidebar/ProfileSidebar";
 
 
 type LayoutProps = {
@@ -20,6 +23,7 @@ const Layout: FunctionComponent<LayoutProps> = ({
 }) => {
   const [isAuth, setIsAuth] = useState<boolean>(true);
   const [categorySidebar, setCategorySidebar] = useState<boolean>(false);
+  const [profileSidebar, setProfileSidebar] = useState<boolean>(false);
 
   return (
     <div className="flex">
@@ -42,13 +46,22 @@ const Layout: FunctionComponent<LayoutProps> = ({
               Знайти
             </div>
 
-            <img
+            {/* <img
               className={`w-10 h-10 rounded-full stroke-black fill-black hover:bg-orange-100 cursor-pointer ${
                 isAuth ? "flex" : "hidden"
               }`}
               src={User}
               alt=""
+              onClick={() => setProfileSidebar(true)}
+            /> */}
+            <User 
+              className={`w-10 h-10 rounded-full stroke-black fill-orange-600 hover:bg-orange-100 cursor-pointer ${
+                isAuth ? "flex" : "hidden"
+              }`}
+              // className="w-10 h-10 fill-black hover:stroke-orange-100"
+              onClick={() => setProfileSidebar(true)}
             />
+
             <div className={`w-2/12 ${isAuth ? "hidden" : "flex"}`}>
               <Button to={`/sign-in`}>Увійти</Button>
             </div>
@@ -61,6 +74,8 @@ const Layout: FunctionComponent<LayoutProps> = ({
           {children}
         </div>
       </div>
+
+      <ProfileSidebar visible={profileSidebar} setVisible={setProfileSidebar} />
     </div>
   );
 };

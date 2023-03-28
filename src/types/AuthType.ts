@@ -24,12 +24,6 @@ export type SignErrorsType = {
   };
 };
 
-export type SocialProvidersType = {
-  google: string;
-  facebook: string;
-  vkontakte: string;
-};
-
 export type ProviderCallbackType = {
   provider: string | null;
   code: string | null;
