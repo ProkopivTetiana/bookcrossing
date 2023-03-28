@@ -11,7 +11,6 @@ import CategorySidebar from "./components/CategorySidebar/CategorySidebar";
 
 import ProfileSidebar from "./components/ProfileSidebar/ProfileSidebar";
 
-
 type LayoutProps = {
   children?: React.ReactNode;
   childrenClassName?: string;
@@ -27,8 +26,10 @@ const Layout: FunctionComponent<LayoutProps> = ({
 
   return (
     <div className="flex">
-
-      <CategorySidebar visible={categorySidebar} setVisible={setCategorySidebar} />
+      <CategorySidebar
+        visible={categorySidebar}
+        setVisible={setCategorySidebar}
+      />
 
       <div className="flex w-full">
         <div className="hidden md:flex md:flex-row md:fixed bg-white justify-center items-center w-full shadow-lg shadow-gray-100 py-4 px-8 ">
@@ -54,7 +55,7 @@ const Layout: FunctionComponent<LayoutProps> = ({
               alt=""
               onClick={() => setProfileSidebar(true)}
             /> */}
-            <User 
+            <User
               className={`w-10 h-10 rounded-full stroke-black fill-orange-600 hover:bg-orange-100 cursor-pointer ${
                 isAuth ? "flex" : "hidden"
               }`}

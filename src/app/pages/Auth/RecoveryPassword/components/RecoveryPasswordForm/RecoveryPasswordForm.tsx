@@ -9,14 +9,9 @@ import useRecoveryPassword from "../../hooks/useRecoveryPassword";
 import Button from "../../../../../components/Button/Button";
 import Input from "../../../../../components/Input";
 
-
 const RecoveryPasswordForm = () => {
-  const { 
-    register,
-    handleSubmit,
-    errors,
-    backendErrors
-  } = useRecoveryPassword();
+  const { register, handleSubmit, errors, backendErrors } =
+    useRecoveryPassword();
 
   return (
     <form
@@ -24,10 +19,10 @@ const RecoveryPasswordForm = () => {
       className="flex flex-col md:p-10 py-8 px-4 lg:p-20 gap-6"
     >
       <h1 className="text-center">
-        Введіть свою пошту і на неї буде відправлений лист 
-        з посиланням для відновлення паролю
+        Введіть свою пошту і на неї буде відправлений лист з посиланням для
+        відновлення паролю
       </h1>
-      <Input 
+      <Input
         label="Електронна пошта"
         placeholder="your@mail.com"
         name="email"
@@ -35,12 +30,14 @@ const RecoveryPasswordForm = () => {
         register={register}
       />
 
-      <Button fill to="/reset-password">Надіслати</Button>
+      <Button fill to="/reset-password">
+        Надіслати
+      </Button>
       {/* <Button >Увійти</Button> */}
 
       {/* {backendErrors?.message && (
         <span className="text-sm text-red mt-2">{backendErrors.message}</span>
-      )} */}      
+      )} */}
 
       <div className="flex flex-row justify-center gap-4">
         <NavLink to={`/sign-in`}>

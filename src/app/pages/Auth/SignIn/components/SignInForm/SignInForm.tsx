@@ -9,14 +9,13 @@ import useSignUp from "../../hooks/useSignIn";
 import Button from "../../../../../components/Button/Button";
 import Input from "../../../../../components/Input";
 
-
 const SignUpForm = () => {
-  const { 
+  const {
     register,
     handleSubmit,
     // signUpHandler,
     errors,
-    backendErrors
+    backendErrors,
   } = useSignUp();
 
   return (
@@ -25,21 +24,20 @@ const SignUpForm = () => {
       className="flex flex-col md:p-10 py-8 px-4 lg:p-20 gap-6"
     >
       <h1 className="text-center">Вхід до акаунту</h1>
-      <Input 
+      <Input
         label="Електронна пошта"
         placeholder="your@mail.com"
         name="email"
         type="email"
         register={register}
       />
-      
-      <Input 
+
+      <Input
         label="Пароль"
         name="password"
         type="password"
         register={register}
-      />  
-
+      />
 
       <Button fill>Увійти</Button>
       {/* <Button >Увійти</Button> */}
@@ -52,7 +50,6 @@ const SignUpForm = () => {
           <div className="text-orange-600">Забули пароль?</div>
         </NavLink>
       </div>
-      
 
       <div className="flex flex-row justify-center gap-4">
         Немає акаунту?

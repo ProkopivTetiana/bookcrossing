@@ -3,7 +3,10 @@ import { FieldValues, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 //types
-import { SignErrorsType, SignUpRequestType } from "../../../../../types/AuthType";
+import {
+  SignErrorsType,
+  SignUpRequestType,
+} from "../../../../../types/AuthType";
 
 const useSignUp = () => {
   const navigate = useNavigate();

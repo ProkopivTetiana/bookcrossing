@@ -9,14 +9,8 @@ import useResetPassword from "../../hooks/useResetPassword";
 import Button from "../../../../../components/Button/Button";
 import Input from "../../../../../components/Input";
 
-
 const ResetPasswordForm = () => {
-  const { 
-    register,
-    handleSubmit,
-    errors,
-    backendErrors
-  } = useResetPassword();
+  const { register, handleSubmit, errors, backendErrors } = useResetPassword();
 
   return (
     <form
@@ -24,13 +18,13 @@ const ResetPasswordForm = () => {
       className="flex flex-col md:p-10 py-8 px-4 lg:p-20 gap-6"
     >
       <h1 className="text-center">Відновлення паролю</h1>
-      <Input 
+      <Input
         label="Новий пароль"
         name="password"
         type="password"
         register={register}
       />
-      <Input 
+      <Input
         label="Повторіть пароль"
         name="repeat-password"
         type="password"
@@ -42,7 +36,7 @@ const ResetPasswordForm = () => {
 
       {/* {backendErrors?.message && (
         <span className="text-sm text-red mt-2">{backendErrors.message}</span>
-      )} */}      
+      )} */}
 
       <div className="flex flex-row justify-center gap-4">
         <NavLink to={`/sign-in`}>

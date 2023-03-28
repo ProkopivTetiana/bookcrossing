@@ -10,11 +10,12 @@ import Button from "../../../../../components/Button/Button";
 import Input from "../../../../../components/Input";
 
 const SignUpForm = () => {
-  const { register,
+  const {
+    register,
     handleSubmit,
-    // signUpHandler, 
+    // signUpHandler,
     errors,
-    backendErrors
+    backendErrors,
   } = useSignUp();
 
   return (
@@ -23,21 +24,21 @@ const SignUpForm = () => {
       className="flex flex-col md:p-10 py-8 px-4 lg:p-20 gap-5"
     >
       <h1 className="text-center">Реєстрація</h1>
-      <Input 
+      <Input
         label="Електронна пошта"
         placeholder="your@mail.com"
         name="email"
         type="email"
         register={register}
       />
-      
-      <Input 
+
+      <Input
         label="Пароль"
         name="password"
         type="password"
         register={register}
       />
-      <Input 
+      <Input
         label="Повторіть пароль"
         name="repeat-password"
         type="password"
@@ -51,7 +52,7 @@ const SignUpForm = () => {
       )} */}
 
       <div className="flex flex-row justify-center gap-4">
-      Вже маєте акаунт?
+        Вже маєте акаунт?
         <NavLink to={`/sign-in`}>
           <div className="text-orange-600">Увійти</div>
         </NavLink>
