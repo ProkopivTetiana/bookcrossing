@@ -1,10 +1,13 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+
 import Button from "../Button/Button";
 import Input from "../Input";
 import User from "../../../assets/user.svg";
-
 import Logo from "../Logo/Logo";
+import CategorySidebar from "./components/CategorySidebar/CategorySidebar";
+
+
 
 type LayoutProps = {
   children?: React.ReactNode;
@@ -16,15 +19,22 @@ const Layout: FunctionComponent<LayoutProps> = ({
   childrenClassName,
 }) => {
   const [isAuth, setIsAuth] = useState<boolean>(true);
+  const [categorySidebar, setCategorySidebar] = useState<boolean>(false);
 
   return (
     <div className="flex">
+
+      <CategorySidebar visible={categorySidebar} setVisible={setCategorySidebar} />
+
       <div className="flex w-full">
         <div className="hidden md:flex md:flex-row md:fixed bg-white justify-center items-center w-full shadow-lg shadow-gray-100 py-4 px-8 ">
           <div className="flex items-center justify-around w-full gap-4">
             <Logo />
 
-            <div className="w-2/12 rounded-full bg-orange-200 border border-orange-400 text-center py-2 cursor-pointer hover:bg-orange-100">
+            <div
+              className="w-2/12 rounded-full bg-orange-200 border border-orange-400 text-center py-2 cursor-pointer hover:bg-orange-100"
+              onClick={() => setCategorySidebar(true)}
+            >
               Категорії книг
             </div>
 
