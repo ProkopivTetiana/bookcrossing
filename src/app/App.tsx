@@ -5,6 +5,9 @@ import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
 import SignIn from './pages/Auth/SignIn/SignIn';
 import SignUp from './pages/Auth/SignUp/SignUp';
 import Home from './pages/Home/Home';
+import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
+import AdvertismentList from './pages/AdvertismentList/AdvertismentList';
+
 
 const App = () => {
   return (
@@ -15,7 +18,14 @@ const App = () => {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/recovery-password" element={<RecoveryPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-
+          <Route
+            path="/advertisments/:list"
+            element={<PrivateRoute component={AdvertismentList}/>}
+          />
+          <Route
+            path="/advertisments/:list/:name/:id"
+            element={<PrivateRoute component={AdvertismentList}/>}
+          />
         </Routes>
     </BrowserRouter>
   );

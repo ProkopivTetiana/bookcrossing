@@ -6,6 +6,9 @@ type PaperProps = {
   childrenClassName?: string;
   paperClassName?: string;
   title?: string;
+  titleClassName?: string;
+  navLink?: string;
+  isSky?: boolean;
 };
 
 const Paper: FunctionComponent<PaperProps> = ({
@@ -13,11 +16,32 @@ const Paper: FunctionComponent<PaperProps> = ({
   childrenClassName,
   paperClassName,
   title,
+  titleClassName,
+  navLink,
+  isSky,
 }) => {
   return (
-    <div className={`flex flex-col shadow-md shadow-orange-400 rounded-lg w-full px-8 py-6 gap-4 ${paperClassName}`}>
-      {title && <div className={``}>{title}</div>}
-      <div className={`flex flex-row justify-start flex-wrap w-full gap-4 ${childrenClassName}`}>
+    <div
+      className={`flex flex-col shadow-md ${
+        isSky ? "bg-sky-100 shadow-sky-400" : "bg-orange-100 shadow-orange-400"
+      }  rounded-lg w-full px-8 py-6 gap-4 ${paperClassName}`}
+    >
+      {navLink && title && (
+        <NavLink
+          to={`advertisments/${navLink}`}
+          className={`${
+            isSky
+              ? "border-sky-400 bg-sky-200"
+              : "border-orange-400 bg-orange-200"
+          } px-4 py-1 w-2/12 border text-center rounded-full hover:bg-opacity-70 ${titleClassName}`}
+        >
+          <div className="">{title}</div>
+        </NavLink>
+      )}
+      {title && !navLink && <div className={``}>{title}</div>}
+      <div
+        className={`flex flex-row justify-start flex-wrap w-full gap-4 ${childrenClassName}`}
+      >
         {children}
       </div>
     </div>
