@@ -4,13 +4,13 @@ import RecoveryPassword from './pages/Auth/RecoveryPassword/RecoveryPassword';
 import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
 import SignIn from './pages/Auth/SignIn/SignIn';
 import SignUp from './pages/Auth/SignUp/SignUp';
-// import Home from './pages/Home/Home';
+import Home from './pages/Home/Home';
 
 const App = () => {
   return (
     <BrowserRouter>
         <Routes>
-          <Route path="/" element={<SignIn />} />
+          <Route path="/" element={<Home />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/recovery-password" element={<RecoveryPassword />} />
