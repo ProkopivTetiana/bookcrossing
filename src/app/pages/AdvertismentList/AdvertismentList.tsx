@@ -19,7 +19,7 @@ const AdvertismentList = () => {
           </div>
         )}
         {list && list === "my-list" && <div>Мої оголошення</div>}
-        {list && list === "my-list" && <NavLink to={"/"}></NavLink>}
+        {list && list === "my-list" && <NavLink to={"/"}>create new</NavLink>}
       </div>
       <div className="flex justify-start flex-wrap w-full gap-10">
         <Advertisment
