@@ -70,7 +70,7 @@ const CategorySidebar: FunctionComponent<CategorySidebarProps> = ({
         </NavLink>
 
         <NavLink
-          to={"/"}
+          to={"/advertisments/history"}
           className="flex justify-start items-center border-b border-orange-500 cursor-pointer px-2 py-4 w-full hover:bg-orange-100 gap-4"
         >
           <div className="flex cursor-pointer">

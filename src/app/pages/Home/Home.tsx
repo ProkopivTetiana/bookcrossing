@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 //Components
 import Layout from "../../components/Layout/Layout";
 import Paper from "../../components/Paper/Paper";
-import Advertisment from "../../components/Advertisment/Advertisment";
+import AdvertismentCard from "../../components/AdvertismentCard/AdvertismentCard";
 
 const Home = () => {
   return (
@@ -13,59 +13,69 @@ const Home = () => {
         Книги - це мости між людьми та світами. Давайте будувати їх разом!
       </h1>
       <Paper title="Новинки" paperClassName="bg-orange-100" navLink="new">
-        <Advertisment
+        <AdvertismentCard
+          id="0"
           name="Нік користувача"
           rating="Рейтинг"
           time="на 3 місяця"
         />
-        <Advertisment
+        <AdvertismentCard
+          id="1"
           name="Нік користувача"
           rating="Рейтинг"
           time="на завжди"
         />
-        <Advertisment
+        <AdvertismentCard
+          id="2"
           name="Нік користувача"
           rating="Рейтинг"
           time="на 6 місяців"
         />
-        <Advertisment
+        <AdvertismentCard
+          id="3"
           name="Нік користувача"
           rating="Рейтинг"
           time="на завжди"
         />
-        <Advertisment
+        <AdvertismentCard
+          id="4"
           name="Нік користувача"
           rating="Рейтинг"
           time="на 1 місяць"
         />
       </Paper>
-      <Paper title="Рекомендації" navLink="recommendations" isSky>
-        <Advertisment
+      {/* <Paper title="Рекомендації" navLink="recommendations" isSky>
+        <AdvertismentCard
+          id="5"
           name="Нік користувача"
           rating="Рейтинг"
           time="на 3 місяця"
         />
-        <Advertisment
+        <AdvertismentCard
+          id="6"
           name="Нік користувача"
           rating="Рейтинг"
           time="на завжди"
         />
-        <Advertisment
+        <AdvertismentCard
+          id="7"
           name="Нік користувача"
           rating="Рейтинг"
           time="на 6 місяців"
         />
-        <Advertisment
+        <AdvertismentCard
+          id="8"
           name="Нік користувача"
           rating="Рейтинг"
           time="на завжди"
         />
-        <Advertisment
+        <AdvertismentCard
+          id="9"
           name="Нік користувача"
           rating="Рейтинг"
           time="на 1 місяць"
-        />
-      </Paper>
+        /> 
+      </Paper>*/}
 
       <div className="flex flex-col gap-8">
         <div>

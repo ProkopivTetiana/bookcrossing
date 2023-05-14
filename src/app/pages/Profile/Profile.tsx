@@ -93,7 +93,7 @@ const Profile = () => {
             <Paper
               isSky
               title="Історія обміну"
-              navLink="histury"
+              navLink="history"
               titleClassName="w-full"
             >
               <div className={``}>Історія обміну пуста</div>

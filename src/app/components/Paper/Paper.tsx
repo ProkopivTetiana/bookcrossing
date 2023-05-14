@@ -28,7 +28,7 @@ const Paper: FunctionComponent<PaperProps> = ({
     >
       {navLink && title && (
         <NavLink
-          to={`advertisments/${navLink}`}
+          to={`/advertisments/${navLink}`}
           className={`${
             isSky
               ? "border-sky-400 bg-sky-200"

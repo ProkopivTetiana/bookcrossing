@@ -8,6 +8,7 @@ import Home from "./pages/Home/Home";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import AdvertismentList from "./pages/AdvertismentList/AdvertismentList";
 import Profile from "./pages/Profile/Profile";
+import Advertisment from "./pages/Advertisment/Advertisment";
 
 const App = () => {
   return (
@@ -25,6 +26,10 @@ const App = () => {
         <Route
           path="/advertisments/:list/:name/:id"
           element={<PrivateRoute component={AdvertismentList} />}
+        />
+        <Route
+          path="/advertisment/:id"
+          element={<PrivateRoute component={Advertisment} />}
         />
 
         <Route
