@@ -5,12 +5,13 @@ import { NavLink, useParams } from "react-router-dom";
 //Components
 import Layout from "../../components/Layout/Layout";
 import AdvertismentCard from "../../components/AdvertismentCard/AdvertismentCard";
+import Button from "../../components/Button/Button";
 
 const AdvertismentList = () => {
   const { list, name, id } = useParams();
   return (
     <Layout>
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         {list && list === "new" && <div>Новинки</div>}
         {list && list === "recommendations" && <div>Рекомендації</div>}
         {list && list === "category" && (
@@ -19,7 +20,7 @@ const AdvertismentList = () => {
           </div>
         )}
         {list && list === "my-list" && <div>Мої оголошення</div>}
-        {list && list === "my-list" && <NavLink to={"/"}>create new</NavLink>}
+        {list && list === "my-list" && <Button className="w-1/6" to={"/create-advertisment"}>Створити оголошення</Button>}
         {list && list === "history" && <div>Історія обміну</div>}
       </div>
       {list === "history" && (

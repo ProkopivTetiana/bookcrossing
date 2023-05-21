@@ -69,7 +69,7 @@ const CategorySidebar: FunctionComponent<CategorySidebarProps> = ({
           <div className="">Мої оголошення</div>
         </NavLink>
 
-        <NavLink
+        {/* <NavLink
           to={"/advertisments/history"}
           className="flex justify-start items-center border-b border-orange-500 cursor-pointer px-2 py-4 w-full hover:bg-orange-100 gap-4"
         >
@@ -77,7 +77,7 @@ const CategorySidebar: FunctionComponent<CategorySidebarProps> = ({
             <Clock />
           </div>
           <div className="">Історія обміну</div>
-        </NavLink>
+        </NavLink> */}
 
         <NavLink
           to={"/sign-in"}

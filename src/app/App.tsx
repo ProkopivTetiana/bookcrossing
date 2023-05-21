@@ -9,6 +9,7 @@ import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import AdvertismentList from "./pages/AdvertismentList/AdvertismentList";
 import Profile from "./pages/Profile/Profile";
 import Advertisment from "./pages/Advertisment/Advertisment";
+import CreateAdvertisment from "./pages/CreateAdvertisment/CreateAdvertisment";
 
 const App = () => {
   return (
@@ -30,6 +31,15 @@ const App = () => {
         <Route
           path="/advertisment/:id"
           element={<PrivateRoute component={Advertisment} />}
+        />
+        {/* <Route
+          path="/advertisment/:id/edit"
+          element={<PrivateRoute component={Advertisment} />}
+        /> */}
+
+        <Route
+          path="/create-advertisment"
+          element={<PrivateRoute component={CreateAdvertisment} />}
         />
 
         <Route
