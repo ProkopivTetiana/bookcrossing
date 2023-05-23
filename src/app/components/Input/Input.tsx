@@ -64,7 +64,7 @@ const Input: FunctionComponent<InputProps> = ({
           placeholder={placeholder}
           disabled={disabled}
           {...register(name)}
-          className={`w-full shadow-md border border-slate-100 bg-white rounded-xl py-3 px-4 outline-none
+          className={`w-full shadow-md border border-slate-200 bg-white rounded-xl py-3 px-4 outline-none
           hover:bg-opacity-20 placeholder:text-gray-3  
           focus:bg-opacity-0 focus:placeholder:text-opacity-100
           disabled:bg-opacity-0 disabled:cursor-not-allowed border

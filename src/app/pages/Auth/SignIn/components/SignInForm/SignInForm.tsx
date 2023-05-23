@@ -13,14 +13,14 @@ const SignUpForm = () => {
   const {
     register,
     handleSubmit,
-    // signUpHandler,
+    signInHandler,
     errors,
     backendErrors,
   } = useSignUp();
 
   return (
     <form
-      // onSubmit={handleSubmit(signUpHandler)}
+      onSubmit={handleSubmit(signInHandler)}
       className="flex flex-col md:p-10 py-8 px-4 lg:p-20 gap-6"
     >
       <h1 className="text-center">Вхід до акаунту</h1>
@@ -45,11 +45,11 @@ const SignUpForm = () => {
       {/* {backendErrors?.message && (
         <span className="text-sm text-red mt-2">{backendErrors.message}</span>
       )} */}
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <NavLink to={`/recovery-password`}>
           <div className="text-orange-600">Забули пароль?</div>
         </NavLink>
-      </div>
+      </div> */}
 
       <div className="flex flex-row justify-center gap-4">
         Немає акаунту?

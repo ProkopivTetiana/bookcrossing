@@ -3,31 +3,35 @@ import React, { FunctionComponent } from "react";
 import { NavLink } from "react-router-dom";
 import User from "../../../assets/user.svg";
 import Camera from "../../../assets/camera.svg";
+import Button from "../Button/Button";
 
-type AdvertismentProps = {
+type AdvertismentCardProps = {
   children?: React.ReactNode;
   childrenClassName?: string;
   paperClassName?: string;
   name?: string;
   rating?: string;
-
   time?: string;
+  status?: string;
+  id: string;
 };
 
-const Advertisment: FunctionComponent<AdvertismentProps> = ({
+const AdvertismentCard: FunctionComponent<AdvertismentCardProps> = ({
   children,
   childrenClassName,
   paperClassName,
   name,
   rating,
   time,
+  status,
+  id,
 }) => {
   let newDate = new Date()
   let date = newDate.getDate();
   let month = newDate.getMonth();
   let year = newDate.getFullYear();
   return (
-    <div className={`flex flex-col bg-white hover:bg-gray-100 cursor-pointer shadow-md shadow-gray-400 rounded-lg w-full max-w-[240px] px-4 py-3 gap-4 ${paperClassName}`}>
+    <NavLink to={`/advertisment/${id}`} className={`flex flex-col bg-white hover:bg-gray-100 cursor-pointer shadow-md shadow-gray-400 rounded-lg w-full ${status? "max-w-[320px]" : "max-w-[240px]"} px-4 py-3 gap-4 ${paperClassName}`}>
       {/* {title && <div className={``}>{title}</div>} */}
       <div className="flex">
         <img className="h-10 w-10 rounded-full stroke-black fill-black" src={User} alt="" />
@@ -63,9 +67,14 @@ const Advertisment: FunctionComponent<AdvertismentProps> = ({
           <p className="text-sm text-slate-900">{date}.{month<10?`0${month+1}`:`${month+1}`}.{year}</p>
         </div>        
       </div>
-        
-    </div>
+      {status && 
+        <div className="flex justify-between items-center">
+          <div className="">{status}</div>
+          {status === "Відкритий" && <Button className="h-4 w-4/12">Закрити</Button>}          
+        </div>
+      }        
+    </NavLink>
   );
 };
 
-export default Advertisment;
+export default AdvertismentCard;

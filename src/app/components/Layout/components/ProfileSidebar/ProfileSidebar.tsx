@@ -50,7 +50,7 @@ const CategorySidebar: FunctionComponent<CategorySidebarProps> = ({
         </div>
 
         <NavLink
-          to={"/"}
+          to={"/profile/0"}
           className="flex justify-start items-center border-b border-orange-500 cursor-pointer px-2 py-4 w-full hover:bg-orange-100 gap-4"
         >
           <div className="flex cursor-pointer">
@@ -69,15 +69,15 @@ const CategorySidebar: FunctionComponent<CategorySidebarProps> = ({
           <div className="">Мої оголошення</div>
         </NavLink>
 
-        <NavLink
-          to={"/"}
+        {/* <NavLink
+          to={"/advertisments/history"}
           className="flex justify-start items-center border-b border-orange-500 cursor-pointer px-2 py-4 w-full hover:bg-orange-100 gap-4"
         >
           <div className="flex cursor-pointer">
             <Clock />
           </div>
           <div className="">Історія обміну</div>
-        </NavLink>
+        </NavLink> */}
 
         <NavLink
           to={"/sign-in"}
@@ -89,7 +89,6 @@ const CategorySidebar: FunctionComponent<CategorySidebarProps> = ({
               src={Logout}
               alt=""
             />
-            {/* <Clock /> */}
           </div>
           <div className="">Вихід</div>
         </NavLink>

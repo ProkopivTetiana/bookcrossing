@@ -1,13 +1,13 @@
 export type SignInRequestType = {
   email: string;
   password: string;
-  rememberMe: boolean;
 };
 
 export type SignUpRequestType = {
   email: string;
   password: string;
-  passwordConfirmation: string;
+  firstName: string;
+  lastName: string;
 };
 
 export type AuthType = {
@@ -22,9 +22,4 @@ export type SignErrorsType = {
     email?: string[];
     password?: string[];
   };
-};
-
-export type ProviderCallbackType = {
-  provider: string | null;
-  code: string | null;
 };

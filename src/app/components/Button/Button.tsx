@@ -38,10 +38,10 @@ const Button: FunctionComponent<ButtonProps> = ({
   onClick,
 }) => {
   const navigate = useNavigate();
-
+//border border-orange-600 text-orange-600 hover:bg-orange-100  
   const isFill = fill
     ? "bg-orange-500 text-white"
-    : "border border-orange-600 text-orange-600 hover:bg-orange-100 ";
+    : "border border-orange-600 bg-orange-100 text-orange-600 hover:text-white hover:bg-orange-600 ";
   const iconFill = fill ? "fill-white" : "fill-orange-600";
 
   const navigateTo = (path?: string) => {
