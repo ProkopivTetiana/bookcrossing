@@ -1,17 +1,18 @@
 import { combineReducers } from "@reduxjs/toolkit";
-// import { revenueApi } from "./api/revenue.api";
-// import { revenueListApi } from "./api/revenueList.api";
-// import revenueSlice from "./slices/revenue.slice";
-// import revenueListSlice from "./slices/revenueList.slice";
+
+import { authApi } from "./api/auth.api";
+import authSlice from "./slices/auth.slice";
 
 const apiReducers = {
-  // [revenueListApi.reducerPath]: revenueListApi.reducer,
-  // [revenueApi.reducerPath]: revenueApi.reducer,
+  [authApi.reducerPath]: authApi.reducer,
+  // [Api.Path]: Api.reducer,
+  // [Api.Path]: Api.reducer,
 };
 
 const sliceReducers = {
-  // revenueList: revenueListSlice,
-  // revenue: revenueSlice,
+  auth: authSlice,
+  // : Slice,
+  // : Slice,
 };
 
 export const reducers = combineReducers({

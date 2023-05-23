@@ -81,7 +81,7 @@ const Profile = () => {
               )}
             </div>
           </form>
-          <div className="flex flex-col gap-4 w-4/12">
+          {/* <div className="flex flex-col gap-4 w-4/12">
             <Paper
               isSky
               title="Мої оголошення"
@@ -98,7 +98,7 @@ const Profile = () => {
             >
               <div className={``}>Історія обміну пуста</div>
             </Paper>
-          </div>
+          </div> */}
         </div>
 
         <div className=""></div>

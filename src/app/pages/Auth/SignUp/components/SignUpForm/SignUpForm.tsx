@@ -13,17 +13,31 @@ const SignUpForm = () => {
   const {
     register,
     handleSubmit,
-    // signUpHandler,
+    signUpHandler,
     errors,
     backendErrors,
   } = useSignUp();
 
   return (
     <form
-      // onSubmit={handleSubmit(signUpHandler)}
+      onSubmit={handleSubmit(signUpHandler)}
       className="flex flex-col md:p-10 py-8 px-4 lg:p-20 gap-5"
     >
       <h1 className="text-center">Реєстрація</h1>
+      <Input
+        label="Ім'я"
+        placeholder=""
+        name="firstName"
+        type="text"
+        register={register}
+      />
+      <Input
+        label="Прізвище"
+        placeholder=""
+        name="lastName"
+        type="text"
+        register={register}
+      />
       <Input
         label="Електронна пошта"
         placeholder="your@mail.com"
@@ -40,7 +54,7 @@ const SignUpForm = () => {
       />
       <Input
         label="Повторіть пароль"
-        name="repeat-password"
+        name="repeatPassword"
         type="password"
         register={register}
       />

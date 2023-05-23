@@ -1,12 +1,12 @@
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "@reduxjs/toolkit";
+import { authActions } from "../store/slices/auth.slice";
 
-// import { revenueListActions } from "./../store/slices/revenueList.slice";
-// import { revenueActions } from "./../store/slices/revenue.slice";
+// import { Actions } from "./../store/slices/.slice";
 
 const allActions = {
-  // ...revenueListActions,
-  // ...revenueActions,
+  ...authActions,
+  // ...Actions,
 };
 
 export const useActions = () => {
