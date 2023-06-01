@@ -3,7 +3,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 //hooks
-import useSignUp from "../../hooks/useSignIn";
+import useSignIn from "../../hooks/useSignIn";
 
 //Components
 import Button from "../../../../../components/Button/Button";
@@ -16,7 +16,7 @@ const SignUpForm = () => {
     signInHandler,
     errors,
     backendErrors,
-  } = useSignUp();
+  } = useSignIn();
 
   return (
     <form

@@ -6,10 +6,10 @@ import SignIn from "./pages/Auth/SignIn/SignIn";
 import SignUp from "./pages/Auth/SignUp/SignUp";
 import Home from "./pages/Home/Home";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
-import AdvertismentList from "./pages/AdvertismentList/AdvertismentList";
+import AdvertisementList from "./pages/AdvertisementList/AdvertisementList";
 import Profile from "./pages/Profile/Profile";
-import Advertisment from "./pages/Advertisment/Advertisment";
-import CreateAdvertisment from "./pages/CreateAdvertisment/CreateAdvertisment";
+import Advertisement from "./pages/Advertisement/Advertisement";
+import CreateAdvertisement from "./pages/CreateAdvertisement/CreateAdvertisement";
 
 const App = () => {
   return (
@@ -21,25 +21,25 @@ const App = () => {
         <Route path="/recovery-password" element={<RecoveryPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route
-          path="/advertisments/:list"
-          element={<PrivateRoute component={AdvertismentList} />}
+          path="/advertisements/:list"
+          element={<PrivateRoute component={AdvertisementList} />}
         />
         <Route
-          path="/advertisments/:list/:name/:id"
-          element={<PrivateRoute component={AdvertismentList} />}
+          path="/advertisements/:list/:name/:id"
+          element={<PrivateRoute component={AdvertisementList} />}
         />
         <Route
-          path="/advertisment/:id"
-          element={<PrivateRoute component={Advertisment} />}
+          path="/advertisement/:id"
+          element={<PrivateRoute component={Advertisement} />}
         />
         {/* <Route
-          path="/advertisment/:id/edit"
-          element={<PrivateRoute component={Advertisment} />}
+          path="/Advertisement/:id/edit"
+          element={<PrivateRoute component={Advertisement} />}
         /> */}
 
         <Route
-          path="/create-advertisment"
-          element={<PrivateRoute component={CreateAdvertisment} />}
+          path="/create-advertisement"
+          element={<PrivateRoute component={CreateAdvertisement} />}
         />
 
         <Route

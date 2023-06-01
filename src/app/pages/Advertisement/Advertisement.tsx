@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 
 import { NavLink, useParams } from "react-router-dom";
 // import User from "../../../assets/user.svg";
@@ -9,53 +9,60 @@ import Paper from "../../components/Paper/Paper";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input";
 import useProfile from "../Profile/hooks/useProfile";
+import useAdvertisement from "./hooks/useAdvertisement";
+import useAdvertisementList from "../AdvertisementList/hooks/useAdvertisementList";
+import Select from "../../components/Select/Select";
 
-const data = {
-  profile_name: "Ім’я профілю",
-  book_name: "Назва книги",
-  author: "Сара Дж. Маас",
-  graduation_year: "2020",
-  category: "Фентезі",
-  time: "Назавжди",
-  description:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-};
-
-type AdvertismentProps = {};
-
-const Advertisment = () => {
+const Advertisement = () => {
   const { id } = useParams();
-  const user_id = id;
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  
   const {
-    profile_name,
-    book_name,
-    author,
-    graduation_year,
-    category,
-    time,
-    description,
-  } = data;
+    deleteAdvertisementByIDHandler,
+    getAdvertisementsByUserIdHandler,
+    profile,
+  } = useAdvertisementList();
 
-  let newDate = new Date();
+  const {
+    getCategoryHandler,
+    getCategoriesHandler,
+    getAdvertisementByIdHandler,
+    category,
+    advertisement,
+    categories,
+  } = useAdvertisement(id);
+
+  const {
+    getUserNameHandler,
+    profileName,
+    register,
+  } = useProfile();
+  
+  let newDate = new Date(advertisement.publicationDate)
   let date = newDate.getDate();
   let month = newDate.getMonth();
   let year = newDate.getFullYear();
 
-  const {
-    register,
-    handleSubmit,
-    // profileHandler,
-    errors,
-    backendErrors,
-  } = useProfile();
+  // const handleDeleteClick: React.MouseEventHandler<HTMLImageElement> = (event) => {
+  //   event.stopPropagation();
+  // };
+  const handleDeleteClick = () => {
+    deleteAdvertisementByIDHandler(advertisement.id);
+  };
+
+  useEffect(() => {
+    getAdvertisementByIdHandler();
+    getCategoriesHandler();
+    getCategoryHandler(advertisement.categoryId);
+    getUserNameHandler();
+  }, []);
+  
   return (
     <Layout>
       {/* <div className="flex flex-col bg-white shadow-md shadow-gray-400 rounded-lg w-full px-10 py-3 gap-4 "> */}
       <Paper childrenClassName="flex-col px-10 py-3 gap-4 w-full">
-        <div className="flex justify-between items-center">
-          <div>Оголошення id: {id}</div>
-          {user_id == id && (
+        <div className="flex justify-end items-center">
+          {advertisement.id.toString() == id && (
             <div className="flex w-1/6">
               {!isEdit && (
                 <Button
@@ -75,14 +82,22 @@ const Advertisment = () => {
                   Зберегти
                 </Button>
               )}
+              {/* <Button onClick={handleDeleteClick} >Видалити</Button> */}
+                
             </div>
           )}
+              {/* <Button onClick={handleDeleteClick} >Видалити</Button> */}
         </div>
         <div className="flex items-center gap-8">
-          <User className="w-12 h-12" />
+          <div
+            className={`flex text-orange-600 bg-orange-100 border-[1px] border-orange-400 w-12 h-12 rounded-full flex items-center justify-center uppercase `}
+            style={{ fontSize: 14 }}
+          >
+            {`${profileName.firstName.slice(0, 1)}${profileName.lastName.slice(0, 1)}`}
+        </div>
           <div className="flex flex-col justify-around h-full gap-8">
             <div className="flex text-xl text-slate-900 gap-4">
-              <div>{profile_name}</div>
+              <div>{profileName.firstName} {profileName.lastName}</div>
             </div>
           </div>
         </div>
@@ -96,15 +111,15 @@ const Advertisment = () => {
           <div className="flex flex-col gap-2 items-center w-8/12 px-8 py-8 border border-slate-300 rounded-xl">
             {!isEdit && (
               <div className="text-lg font-medium text-slate-900">
-                {book_name}
+                {advertisement.title}
               </div>
             )}
             {isEdit && (
               <Input
                 label="Назва книги"
                 inputClassName="border-orange-600 hover:bg-opacity-80 focus:bg-opacity-60"
-                value={book_name}
-                name="book_name"
+                value={advertisement.title}
+                name="title"
                 type="text"
                 register={register}
               />
@@ -115,15 +130,15 @@ const Advertisment = () => {
                 <div>
                   {!isEdit && (
                     <div className="text-sm font-medium text-slate-900">
-                      Автор: {author}
+                      Автор: {advertisement.authorFullName}
                     </div>
                   )}
                   {isEdit && (
                     <Input
                       label="Автор:"
                       inputClassName="border-orange-600 hover:bg-opacity-80 focus:bg-opacity-60"
-                      value={author}
-                      name="author"
+                      value={advertisement.authorFullName}
+                      name="authorFullName"
                       type="text"
                       register={register}
                     />
@@ -133,15 +148,15 @@ const Advertisment = () => {
                 <div>
                   {!isEdit && (
                     <div className="text-sm font-medium text-slate-900">
-                      Рік випуску: {graduation_year}
+                      Рік випуску: {advertisement.publicationYear}
                     </div>
                   )}
                   {isEdit && (
                     <Input
                       label="Рік випуску:"
                       inputClassName="border-orange-600 hover:bg-opacity-80 focus:bg-opacity-60"
-                      value={graduation_year}
-                      name="graduation_year"
+                      value={advertisement.publicationYear}
+                      name="publicationYear"
                       type="text"
                       register={register}
                     />
@@ -151,32 +166,25 @@ const Advertisment = () => {
                 <div>
                   {!isEdit && (
                     <div className="text-sm font-medium text-slate-900">
-                      Категорія: {category}
+                      Категорія: {category.name}
                     </div>
                   )}
                   {isEdit && (
-                    <Input
-                      label="Категорія:"
-                      inputClassName="border-orange-600 hover:bg-opacity-80 focus:bg-opacity-60"
-                      value={category}
-                      name="category"
-                      type="text"
-                      register={register}
-                    />
+                    <Select name="categoryId" options={categories} register={register}/>
                   )}
                 </div>
               </div>
               <div>
                 {!isEdit && (
                   <div className="text-sm font-medium text-slate-900">
-                    Віддам: {time}
+                    Віддам: {advertisement.time}
                   </div>
                 )}
                 {isEdit && (
                   <Input
                     label="Віддам:"
                     inputClassName="border-orange-600 hover:bg-opacity-80 focus:bg-opacity-60"
-                    value={time}
+                    value={advertisement.time}
                     name="time"
                     type="text"
                     register={register}
@@ -191,66 +199,27 @@ const Advertisment = () => {
         <div>
           {!isEdit && (
             <div className="flex w-full px-8 py-8 border border-slate-300 rounded-xl">
-              {description}
+              {advertisement.description}
             </div>
           )}
           {isEdit && (
             <Input
               inputClassName="border-orange-600 hover:bg-opacity-80 focus:bg-opacity-60"
-              value={description}
+              value={advertisement.description}
               name="description"
               type="text"
               register={register}
             />
           )}
         </div>
-
-        <div>Підпис :</div>
-        {/* {title && <div className={``}>{title}</div>}
-      <div className="flex">
-        <img className="h-10 w-10 rounded-full stroke-black fill-black" src={User} alt="" />
-        <div className="ml-3 overflow-hidden">  
-          <p className="text-sm font-medium text-slate-900">{name}</p>
-          <p className="text-sm text-slate-500 truncate">{rating}</p>
+        <div className="flex justify-between" >
+          <div>Контактна інформація:</div>
+          <div className="text-orange-600" >{profileName.contactInfo}</div>
         </div>
-       
-      </div>
-
-      <div className="px-8 py-8 border border-slate-300 rounded-xl">
-        <img className="w-full " src={Camera} alt="" />  
-      </div>
-
-      <div className="flex flex-col">
-        <p className="text-sm font-medium text-slate-900">{}Назва книги</p>
-        <p className="text-sm text-slate-500 truncate">{}Автор</p>
-        <p className="text-sm text-slate-500 truncate">{}рік видання</p>
-        <p className="text-sm font-medium text-slate-900">{}Категорія</p>
-      </div>
-      <div className="">
-        <p className="text-sm font-medium text-slate-900">{}Опис:</p>
-        <p className="text-sm text-slate-500 truncate">{}
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-          when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-         </p>
-      </div>
-      <div className="flex flex-col">
-        <p className="text-sm font-medium text-slate-900">{}Віддам:</p>
-        <div className="flex justify-between">
-          <p className="text-sm font-medium text-slate-900">{time}</p>
-          <p className="text-sm text-slate-900">{date}.{month<10?`0${month+1}`:`${month+1}`}.{year}</p>
-        </div>        
-      </div>
-      {status && 
-        <div className="flex justify-between items-center">
-          <div className="">{status}</div>      
-        </div>
-      }*/}
-
-        {/* </div> */}
+      
       </Paper>
     </Layout>
   );
 };
 
-export default Advertisment;
+export default Advertisement;

@@ -18,11 +18,11 @@ const CategorySidebar: FunctionComponent<CategorySidebarProps> = ({
     <div
         className={`
           ${visible ? "flex fixed" : "hidden"}
-          z-10 w-full h-full
+          z-20 w-full h-full
         `}
       >
         <div
-          className={`flex flex-col items-center bg-white w-2/12 z-20  overflow-auto`}
+          className={`flex flex-col items-center bg-white w-2/12 z-30  overflow-auto`}
         >
           <div className="flex flex-col justify-center items-center pt-8 pb-4 w-full">
             <Logo />
@@ -47,7 +47,7 @@ const CategorySidebar: FunctionComponent<CategorySidebarProps> = ({
         <div
           className={`${
             activeCategory ? "flex" : "hidden"
-          } flex-col items-center bg-orange-200 w-2/12 z-20 overflow-auto`}
+          } flex-col items-center bg-orange-200 w-2/12 z-30 overflow-auto`}
         >
           {activeCategory &&
             selects &&
@@ -61,7 +61,7 @@ const CategorySidebar: FunctionComponent<CategorySidebarProps> = ({
                   }}
                 >
                   <NavLink
-                    to={`/advertisments/category/${item.name}/${item.idCategory}`}
+                    to={`/advertisements/category/${item.name}/${item.idCategory}`}
                   >
                     {item.name}
                   </NavLink>

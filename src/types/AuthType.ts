@@ -8,11 +8,11 @@ export type SignUpRequestType = {
   password: string;
   firstName: string;
   lastName: string;
+  // repeatPassword: string;
 };
 
 export type AuthType = {
   token: string | null;
-  expiresAt: number;
   isAuth: boolean;
 };
 

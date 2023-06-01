@@ -14,19 +14,19 @@ import Logout  from "../../../../../assets/logout.png";
 type CategorySidebarProps = {
   visible: boolean;
   setVisible: Function;
-  icon?: ReactNode;
+  profileId?: number;
 };
 
 const CategorySidebar: FunctionComponent<CategorySidebarProps> = ({
   visible,
   setVisible,
-  icon,
+  profileId,
 }) => {
   return (
     <div
       className={`
           ${visible ? "flex justify-end fixed" : "hidden"}
-          z-10 w-full h-full
+          z-20 w-full h-full
         `}
     >
       <div
@@ -37,7 +37,7 @@ const CategorySidebar: FunctionComponent<CategorySidebarProps> = ({
       ></div>
 
       <div
-        className={`flex flex-col items-center bg-white w-2/12 z-20  overflow-auto`}
+        className={`flex flex-col items-center bg-white w-2/12 z-30  overflow-auto`}
       >
         <div className="flex justify-start items-center border-b border-orange-500 pt-8 pb-4 px-4 w-full gap-4">
           {/* <img
@@ -50,7 +50,7 @@ const CategorySidebar: FunctionComponent<CategorySidebarProps> = ({
         </div>
 
         <NavLink
-          to={"/profile/0"}
+          to={`/profile/${profileId}`}
           className="flex justify-start items-center border-b border-orange-500 cursor-pointer px-2 py-4 w-full hover:bg-orange-100 gap-4"
         >
           <div className="flex cursor-pointer">
@@ -60,7 +60,7 @@ const CategorySidebar: FunctionComponent<CategorySidebarProps> = ({
         </NavLink>
 
         <NavLink
-          to={"/advertisments/my-list"}
+          to={"/advertisements/my-list"}
           className="flex justify-start items-center border-b border-orange-500 cursor-pointer px-2 py-4 w-full hover:bg-orange-100 gap-4"
         >
           <div className="flex cursor-pointer">
@@ -70,7 +70,7 @@ const CategorySidebar: FunctionComponent<CategorySidebarProps> = ({
         </NavLink>
 
         {/* <NavLink
-          to={"/advertisments/history"}
+          to={"/advertisements/history"}
           className="flex justify-start items-center border-b border-orange-500 cursor-pointer px-2 py-4 w-full hover:bg-orange-100 gap-4"
         >
           <div className="flex cursor-pointer">
