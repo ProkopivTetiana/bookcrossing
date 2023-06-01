@@ -13,31 +13,31 @@ export const advertisementApi = createApi({
   endpoints: (builder) => ({
     getAllAdvertisements: builder.mutation({
         query: () => ({
-          url: "/advertisement",
+          url: "/advertisements",
           method: "GET",
         }),
       }),
     getAdvertisementById: builder.mutation({
       query: ({id}) => ({
-        url: `/advertisement/${id}`,
+        url: `/advertisements/${id}`,
         method: "GET",
       }),
     }),
     getAdvertisementsByCategory: builder.mutation({
       query: ({categoryId}) => ({
-        url: `/advertisement/categories/${categoryId}`,
+        url: `/advertisements/categories/${categoryId}`,
         method: "GET",
       }),
     }),
     getAdvertisementsByUserId: builder.mutation({
       query: ({userId}) => ({
-        url: `/advertisement/profile/${userId}`,
+        url: `/advertisements/profile/${userId}`,
         method: "GET",
       }),
     }),
     searchAdvertisementsByName: builder.mutation({
       query: ({name}) => ({
-        url: `/advertisement/${name}`,
+        url: `/advertisements/${name}`,
         method: "GET",
       }),
     }),
@@ -47,7 +47,7 @@ export const advertisementApi = createApi({
         AddAdvertisementType
     >({
         query: (body) => ({
-        url: "/advertisement",
+        url: "/advertisements",
         method: "POST",
         body,
         }),
@@ -55,7 +55,7 @@ export const advertisementApi = createApi({
 
     deleteAdvertisement: builder.mutation({
       query: ({ id }) => ({
-        url: `/advertisement/${id}`,
+        url: `/advertisements/${id}`,
         method: "DELETE",
       }),
     }),
@@ -65,7 +65,7 @@ export const advertisementApi = createApi({
       UpdateAdvertisementRequestType
     >({
       query: ({ id, body }) => ({
-        url: `/advertisement/${id}`,
+        url: `/advertisements/${id}`,
         method: "PUT",
         body,
       }),

@@ -52,7 +52,7 @@ const Select: FunctionComponent<SelectProps> = ({
       } ${className}`}
     >
       <label
-        className={`text-gray-3 mb-0.5 w-full md:w-56 ${labelClassName}`}
+        className={`text-slate-900 mb-0.5 w-full md:w-56 ${labelClassName}`}
         htmlFor={label}
       >
         {label}

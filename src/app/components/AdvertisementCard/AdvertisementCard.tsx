@@ -57,7 +57,7 @@ const AdvertisementCard: FunctionComponent<AdvertisementCardProps> = ({
 
   useEffect(() => {
     getCategoryHandler(advertisement.categoryId);
-    getUserNameHandler();
+    getUserNameHandler(advertisement.userId);
   }, []);
 
   return (
@@ -99,7 +99,7 @@ const AdvertisementCard: FunctionComponent<AdvertisementCardProps> = ({
         </div>
         <div className="flex flex-col">
           <p className="text-sm font-medium text-slate-900">{advertisement.title}</p>
-          <p className="text-sm text-slate-500 truncate">{advertisement.authorFullName}</p>
+          <p className="text-sm text-slate-500 truncate">{advertisement.bookAuthorFullName}</p>
           <p className="text-sm text-slate-500 truncate">{advertisement.publicationYear}</p>
           <p className="text-sm font-medium text-slate-900">{category.name}</p>
         </div>

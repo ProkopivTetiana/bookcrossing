@@ -3,7 +3,7 @@ export type AdvertisementType = {
     id: number;
     userId: string;
     title: string;
-    authorFullName: string;
+    bookAuthorFullName: string;
     publicationYear: number;
     description: string;
     time: string; 

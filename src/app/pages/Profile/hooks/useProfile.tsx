@@ -38,9 +38,9 @@ const useProfile = () => {
       setProfile(profile);
     } catch (error) {}
   };
-  const getUserNameHandler = async () => {
+  const getUserNameHandler = async (id: string) => {
     try {
-      const profileName = await getUserName(null).unwrap();
+      const profileName = await getUserName(id).unwrap();
       console.log("GET profileName", profileName);
       setProfileName(profileName);
     } catch (error) {}
@@ -52,9 +52,7 @@ const updateUserHandler = async (formData: any) => {
   try {
     console.log("PUT profile, formData: ", formData);
     console.log("profile.id", profile.id )
-      if(formData.id){
-        await updateUser({ id: profile?.id, body: formData});
-      }
+    await updateUser({ id: profile.id, body: {...formData, id: profile.id}});
       getUserHandler();
   } catch (error) {}
 };

@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import Button from "../Button/Button";
 import Input from "../Input";
@@ -25,8 +25,9 @@ const Layout: FunctionComponent<LayoutProps> = ({
 }) => {
   // const [isAuth, setIsAuth] = useState<boolean>(true);
   const { isAuth } = useTypedSelector((state) => state.auth);
-  const { profile } = useTypedSelector((state) => state.profile);
+  const { profile, profileName } = useTypedSelector((state) => state.profile);
  
+  const navigate = useNavigate();
 
   const [categorySidebar, setCategorySidebar] = useState<boolean>(false);
   const [profileSidebar, setProfileSidebar] = useState<boolean>(false);
@@ -39,7 +40,9 @@ const Layout: FunctionComponent<LayoutProps> = ({
 
   const handleSearchClick = (data: FieldValues ) => {
     console.log("data.search", data.search)
-    searchAdvertisementsByNameHandler(data.search);
+    // searchAdvertisementsByNameHandler(data.search);
+    navigate(`/advertisements/search/${data.search}`);
+
   };
 
   return (
@@ -68,8 +71,10 @@ const Layout: FunctionComponent<LayoutProps> = ({
                 {...register("search")}
                 className={`w-full rounded-full bg-orange-100 border border-orange-300 px-6 py-2`}
               />
+              <div className="w-[40px]">
+                <Button className="bg-white border-[0px] hover:bg-white  rounded-full"> <img className="w-10 h-6" src={Search} /> </Button>
+              </div>
               
-              <Button className="bg-white border-[0px] hover:bg-white  w-[40px] rounded-full"> <img className="w-10 h-6" src={Search} /> </Button>
             </form>
 
             {/* <img
@@ -111,7 +116,7 @@ const Layout: FunctionComponent<LayoutProps> = ({
         </div>
       </div>
 
-      <ProfileSidebar visible={profileSidebar} setVisible={setProfileSidebar} profileId={profile.id} />
+      <ProfileSidebar visible={profileSidebar} setVisible={setProfileSidebar} profileId={profile.id} profileName={profileName} />
     </div>
   );
 };

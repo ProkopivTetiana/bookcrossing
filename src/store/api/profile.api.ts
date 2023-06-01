@@ -17,8 +17,8 @@ export const profileApi = createApi({
         }),
       }),
       getUserName: builder.mutation({
-        query: () => ({
-          url: "/profile/name/{id}",
+        query: (id) => ({
+          url: `/profile/name/${id}`,
           method: "GET",
         }),
       }),
@@ -28,8 +28,8 @@ export const profileApi = createApi({
       UpdateUserRequestType
     >({
       query: ({ id, body }) => ({
-        url: `/profile`,
-        method: "PUT",
+        url: `/profile/${id}`,
+        method: "PATCH",
         body,
       }),
     }),

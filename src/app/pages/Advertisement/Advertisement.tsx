@@ -51,10 +51,12 @@ const Advertisement = () => {
   };
 
   useEffect(() => {
-    getAdvertisementByIdHandler();
+    if(id){
+      getAdvertisementByIdHandler(id);
+    }
     getCategoriesHandler();
     getCategoryHandler(advertisement.categoryId);
-    getUserNameHandler();
+    getUserNameHandler(advertisement.userId);
   }, []);
   
   return (
@@ -94,7 +96,7 @@ const Advertisement = () => {
             style={{ fontSize: 14 }}
           >
             {`${profileName.firstName.slice(0, 1)}${profileName.lastName.slice(0, 1)}`}
-        </div>
+           </div>
           <div className="flex flex-col justify-around h-full gap-8">
             <div className="flex text-xl text-slate-900 gap-4">
               <div>{profileName.firstName} {profileName.lastName}</div>
@@ -130,15 +132,15 @@ const Advertisement = () => {
                 <div>
                   {!isEdit && (
                     <div className="text-sm font-medium text-slate-900">
-                      Автор: {advertisement.authorFullName}
+                      Автор: {advertisement.bookAuthorFullName}
                     </div>
                   )}
                   {isEdit && (
                     <Input
                       label="Автор:"
                       inputClassName="border-orange-600 hover:bg-opacity-80 focus:bg-opacity-60"
-                      value={advertisement.authorFullName}
-                      name="authorFullName"
+                      value={advertisement.bookAuthorFullName}
+                      name="bookAuthorFullName"
                       type="text"
                       register={register}
                     />
@@ -170,7 +172,7 @@ const Advertisement = () => {
                     </div>
                   )}
                   {isEdit && (
-                    <Select name="categoryId" options={categories} register={register}/>
+                    <Select label="Категорія:"  name="categoryId" options={categories} register={register}/>
                   )}
                 </div>
               </div>
