@@ -1,7 +1,7 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/dist/query";
 import { RootState } from ".";
 
-const REACT_APP_API_BACKEND_URL = "https://localhost:8079/api/v1";
+const REACT_APP_API_BACKEND_URL = "http://localhost:8079/api/v1";
 
 export const baseQuery = fetchBaseQuery({
   baseUrl: REACT_APP_API_BACKEND_URL,

@@ -2,9 +2,6 @@
 import { AuthType } from "./../../types/AuthType";
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-// import { setAuthorization } from "helpers/apiClient";
-
-const timestamp = 948880187000; // 2000 year
 
 // const setAuthorization = (token: string) => {
 //   axios.defaults.headers.common["authorization"] = "Bearer " + token;
@@ -13,7 +10,6 @@ const timestamp = 948880187000; // 2000 year
 const initialState: AuthType = {
   token: null,
   isAuth: false,
-  expiresAt: timestamp,
 };
 
 const slice = createSlice({
@@ -22,18 +18,13 @@ const slice = createSlice({
   reducers: {
     setCredentials: (state, action: PayloadAction<AuthType>) => {
       state.token = action.payload.token;
-      state.expiresAt = action.payload.expiresAt;
       state.isAuth = true;
       localStorage.setItem("token", JSON.stringify(state.token));
-      localStorage.setItem("expiresAt", JSON.stringify(state.expiresAt));
-      // setAuthorization(action.payload.token ?? "");
     },
     logOut: (state) => {
       state.isAuth = false;
       state.token = null;
-      state.expiresAt = timestamp;
       localStorage.removeItem("token");
-      localStorage.removeItem("expiresAt");
     },
   },
 });

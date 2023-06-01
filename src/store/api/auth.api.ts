@@ -11,7 +11,7 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     signIn: builder.mutation<AuthType, SignInRequestType | FieldValues>({
       query: (credentials) => ({
-        url: "/authentication",
+        url: "/auth/authentication",
         method: "POST",
         body: credentials,
       }),
@@ -19,7 +19,7 @@ export const authApi = createApi({
 
     signUp: builder.mutation<AuthType, SignUpRequestType | FieldValues>({
       query: (credentials) => ({
-        url: "/registration",
+        url: "/auth/registration",
         method: "POST",
         body: credentials,
       }),

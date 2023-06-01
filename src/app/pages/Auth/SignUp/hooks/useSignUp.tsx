@@ -30,6 +30,7 @@ const useSignUp = () => {
   const signUpHandler = async (formData: SignUpRequestType | FieldValues) => {
     try {
       const authData = await signUp(formData).unwrap();
+      navigate("/sign-in");
       // setCredentials(authData);
     } catch (error: any) {
       setBackendErrors(error.data);

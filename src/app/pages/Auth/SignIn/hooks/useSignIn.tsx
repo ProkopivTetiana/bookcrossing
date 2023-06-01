@@ -7,6 +7,7 @@ import { SignErrorsType, SignInRequestType } from "../../../../../types/AuthType
 
 import { useActions } from "../../../../../hooks/useActions";
 import { useSignInMutation } from "../../../../../store/api/auth.api";
+import { useGetUserMutation } from "../../../../../store/api/profile.api";
 
 const useSignIn = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const useSignIn = () => {
     null
   );
   
-  const { setCredentials } = useActions();
+  const { setCredentials, setProfile } = useActions();
 
   const {
     register,
@@ -24,15 +25,18 @@ const useSignIn = () => {
   } = useForm<SignInRequestType | FieldValues>();
 
   const [signIn] = useSignInMutation();
+  const [getProfile] = useGetUserMutation();
 
   const signInHandler = async (formData: SignInRequestType | FieldValues) => {
     try {
       const authData = await signIn(formData).unwrap();
       setCredentials(authData);
-      // setTimeout(async () => {
-      //   const userData = await getProfile(null).unwrap();
-      //   setUser(userData);
-      // }, 500);
+      setTimeout(async () => {
+        const userData = await getProfile(null).unwrap();
+        console.log("POST sign In, userData", userData)
+        setProfile(userData);
+        navigate("/");
+      }, 500);
     } catch (error: any) {
       setBackendErrors(error.data);
     }
