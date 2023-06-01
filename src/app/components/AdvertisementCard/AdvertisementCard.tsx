@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 
 import { NavLink, useParams } from "react-router-dom";
 import User from "../../../assets/user.svg";
@@ -14,14 +14,14 @@ type AdvertisementCardProps = {
   paperClassName?: string;
   advertisement: AdvertisementType;
 };
-const firstName = "User" ;
-const lastName = "Name" ;
 
 const AdvertisementCard: FunctionComponent<AdvertisementCardProps> = ({
   paperClassName,
   advertisement,
 }) => {
   const { list, name, id } = useParams();
+  
+
   const {
     deleteAdvertisementByIDHandler,
     getAdvertisementsByUserIdHandler,
@@ -33,12 +33,16 @@ const AdvertisementCard: FunctionComponent<AdvertisementCardProps> = ({
     getCategoryHandler,
     categories,
     category,
-  } = useAdvertisement();
+  } = useAdvertisement();  
 
   const {
     getUserNameHandler,
+    getUsersHandler,
     profileName,
+    users,
   } = useProfile();
+
+ 
   
   let newDate = new Date(advertisement.time)
   let date = newDate.getDate();
@@ -52,30 +56,39 @@ const AdvertisementCard: FunctionComponent<AdvertisementCardProps> = ({
     event.preventDefault();
     event.stopPropagation();
     deleteAdvertisementByIDHandler(advertisement.id);
+    console.log("start")
     getAdvertisementsByUserIdHandler(profile.id.toString())
+    console.log("finish")
+    console.log("profile.id.toString()", profile.id.toString())
   };
 
+ 
+  // const [firstName, setFirstName ] = useState("");
+  // const [lastName, setLastName ] = useState("");
+  // setFirstName(users.find((users) => users.id.toString() === advertisement.userId)?.firstName);
+  // setLastName(users.find((users) => users.id.toString() === advertisement.userId)?.lastName);
+
   useEffect(() => {
-    getCategoryHandler(advertisement.categoryId);
-    getUserNameHandler();
+    // getCategoryHandler(advertisement.categoryId);
+    getUserNameHandler(advertisement.userId);
+    getCategoriesHandler();
+    getUsersHandler();
   }, []);
 
+  const [firstName, setFirstName ] = useState();
+  const [lastName, setLastName ] = useState();
+
   return (
-    <NavLink to={`/advertisement/${advertisement.id}`} className={`flex flex-col bg-white hover:bg-gray-100 cursor-pointer shadow-md shadow-gray-400 rounded-lg w-3/12 px-4 py-3 gap-4 ${paperClassName}`}>
+    <NavLink to={`/advertisement/${advertisement.id}`} className={`flex flex-col bg-white hover:bg-gray-100 cursor-pointer shadow-md shadow-gray-400 rounded-lg w-[22%] px-4 py-3 gap-4 ${paperClassName}`}>
       {/* {title && <div className={``}>{title}</div>} */}
       <div className="flex items-center gap-4">
         <div
           className={`flex text-orange-600 bg-orange-100 border-[1px] border-orange-400 w-10  h-10 rounded-full flex items-center justify-center uppercase cursor-pointer`}
           style={{ fontSize: 14 }}
         >
-          {/* {`${profile?.firstName?.slice(0, 1)}${profile?.lastName?.slice(0, 1)}`} */}
-          {`${profileName.firstName.slice(0, 1)}${profileName.lastName.slice(0, 1)}`}
+          {`${users.find((users) => users.id.toString() === advertisement.userId)?.firstName?.slice(0, 1)}${users.find((users) => users.id.toString() === advertisement.userId)?.lastName?.slice(0, 1)}`}
         </div>
-        {/* <div className="ml-3 overflow-hidden">
-          <p className="text-sm font-medium text-slate-900">{advertisement.name} User Name</p>
-          <p className="text-sm text-slate-500 truncate">{rating}</p>
-        </div> */}
-        <p className="text-sm font-medium text-slate-900">{advertisement.title} User Name</p>
+        <p className="text-sm font-medium text-slate-900">{users.find((users) => users.id.toString() === advertisement.userId)?.firstName} {users.find((users) => users.id.toString() === advertisement.userId)?.lastName}</p>
         {list && list === "my-list" && 
           <div onClick={handleDeleteClick}>
             <img
@@ -99,9 +112,9 @@ const AdvertisementCard: FunctionComponent<AdvertisementCardProps> = ({
         </div>
         <div className="flex flex-col">
           <p className="text-sm font-medium text-slate-900">{advertisement.title}</p>
-          <p className="text-sm text-slate-500 truncate">{advertisement.authorFullName}</p>
+          <p className="text-sm text-slate-500 truncate">{advertisement.bookAuthorFullName}</p>
           <p className="text-sm text-slate-500 truncate">{advertisement.publicationYear}</p>
-          <p className="text-sm font-medium text-slate-900">{category.name}</p>
+          <p className="text-sm font-medium text-slate-900">{categories.find((category) => category.id === advertisement.categoryId)?.name}</p>
         </div>
       </div>
 
@@ -113,7 +126,7 @@ const AdvertisementCard: FunctionComponent<AdvertisementCardProps> = ({
         <p className="text-sm font-medium text-slate-900">Віддам:</p>
         <div className="flex justify-between">
           <p className="text-sm font-medium text-slate-900">{advertisement.time}</p>
-          <p className="text-sm text-slate-900">{date}.{month<10?`0${month+1}`:`${month+1}`}.{year}</p>
+          <p className="text-sm text-slate-900">{advertisement.publicationDate}</p>
         </div>        
       </div>
       {/* {status && 

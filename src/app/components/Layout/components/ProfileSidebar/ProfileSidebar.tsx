@@ -8,6 +8,7 @@ import { ReactComponent as User } from "../../../../../assets/user.svg";
 import { ReactComponent as Clock } from "../../../../../assets/clock.svg";
 import { ReactComponent as Case } from "../../../../../assets/case.svg";
 import Logout  from "../../../../../assets/logout.png";
+import { UserNameType } from "../../../../../types/UserType";
 
 // import User from "../../../../../assets/user.svg";
 
@@ -15,12 +16,14 @@ type CategorySidebarProps = {
   visible: boolean;
   setVisible: Function;
   profileId?: number;
+  profileName: UserNameType;
 };
 
 const CategorySidebar: FunctionComponent<CategorySidebarProps> = ({
   visible,
   setVisible,
   profileId,
+  profileName,
 }) => {
   return (
     <div
@@ -46,7 +49,7 @@ const CategorySidebar: FunctionComponent<CategorySidebarProps> = ({
               alt=""
             /> */}
           <User className="w-10 h-10 fill-black" />
-          <div>Ім'я Користувача</div>
+          <div>{profileName.firstName} {profileName.lastName}</div>
         </div>
 
         <NavLink

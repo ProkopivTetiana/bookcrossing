@@ -8,6 +8,8 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 
 import useProfile from "./hooks/useProfile";
+import { FieldValues } from "react-hook-form";
+import { AdvertisementType } from "../../../types/Advertisement";
 
 const Profile = () => {
   const { id } = useParams();
@@ -16,25 +18,37 @@ const Profile = () => {
   const {
     register,
     handleSubmit,
-    // profileHandler,
     errors,
     backendErrors,
+    getUserHandler,
+    profile,
+    updateUserHandler,
   } = useProfile();
+
+  const handleUpdateClick = (data: AdvertisementType | FieldValues) => {
+    updateUserHandler(data);
+    setIsEdit(true);
+  };
 
   return (
     <Layout>
       <Paper paperClassName="pl-28 py-8">
         <div className="flex justify-around w-full">
-          <form className="flex flex-col gap-8 w-1/2">
+          <form className="flex flex-col gap-8 w-8/12" onSubmit={handleSubmit(handleUpdateClick)} >
             <div className="flex items-center gap-8">
-              <User className="w-28 h-28" />
-              <div className="flex flex-col justify-around h-full gap-8">
+              <div
+                className={`flex text-orange-600 bg-orange-100 border-[1px] border-orange-400 w-28 h-28 rounded-full flex items-center justify-center uppercase `}
+                style={{ fontSize: 48 }}
+              >
+                {`${profile.firstName.slice(0, 1)}${profile.lastName.slice(0, 1)}`}
+              </div>
+              <div className="flex flex-col w-1/2 justify-around h-full gap-8">
                 <div className="flex text-xl text-slate-900 gap-4">
-                  <div>Ім’я профілю, id: {id}</div>
-                  <div>Рейтинг</div>
+                  <div>{profile.firstName} {profile.lastName}</div>
                 </div>
                 {!isEdit && (
                   <Button
+                    // className="w-full"
                     fill
                     onClick={() => {
                       setIsEdit(true);
@@ -46,9 +60,9 @@ const Profile = () => {
                 {isEdit && (
                   <Button
                     fill
-                    onClick={() => {
-                      setIsEdit(false);
-                    }}
+                    // onClick={() => {
+                    //   setIsEdit(false);
+                    // }}
                   >
                     Зберегти
                   </Button>
@@ -57,7 +71,7 @@ const Profile = () => {
             </div>
             <div className="flex gap-2 items-center">
               <div className="w-1/2">Електронна пошта :</div>
-              {!isEdit && <div className="w-full">user@email.com</div>}
+              {!isEdit && <div className="w-full">{profile.email}</div>}
               {isEdit && (
                 <Input
                   inputClassName="border-orange-600 hover:bg-opacity-80 focus:bg-opacity-60"
@@ -65,6 +79,7 @@ const Profile = () => {
                   name="email"
                   type="email"
                   register={register}
+                  value={profile.email}
                 />
               )}
             </div>
@@ -77,6 +92,19 @@ const Profile = () => {
                   name="password"
                   type="password"
                   register={register}
+                />
+              )}
+            </div>
+            <div className="flex gap-2 items-center">
+              <div className="w-1/2">Контактна інформація: :</div>
+              {!isEdit && <div className="w-full">{profile.contactInfo}</div>}
+              {isEdit && (
+                <Input
+                  inputClassName="border-orange-600 hover:bg-opacity-80 focus:bg-opacity-60"
+                  name="contactInfo"
+                  type="text"
+                  register={register}
+                  value={profile.contactInfo}
                 />
               )}
             </div>

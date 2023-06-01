@@ -13,6 +13,7 @@ import { useAddCategoryAdvertisementMutation, useDeleteCategoryAdvertisementMuta
 const useAdvertisement = (
   advertisementId? : string,
 ) => {
+
   const navigate = useNavigate();
 
   const [backendErrors, setBackendErrors] = useState<null>(
@@ -43,11 +44,9 @@ const useAdvertisement = (
   const [getCategories] = useGetCategoriesMutation();
   const [getCategory] = useGetCategoryMutation();
 
-  const getAdvertisementByIdHandler = async () => {
+  const getAdvertisementByIdHandler = async (id:string) => {
     try {
-      const advertisement = await getAdvertisementById(advertisementId).unwrap();
-      console.log("GET advertisement by id", advertisement);
-      console.log("advertisement id", advertisementId);
+      const advertisement = await getAdvertisementById(id).unwrap();
       setAdvertisement(advertisement);
     } catch (error) {}
   };
@@ -82,7 +81,8 @@ const useAdvertisement = (
       console.log("POST add New Advertisement {formData}", formData);
       // await addNewAdvertisement({...formData, departmentId: departmentId, teacherId: teacherId, academicYearId : academicYearId }).unwrap();
       await addNewAdvertisement(formData,).unwrap();
-      getAdvertisementByIdHandler();
+      navigate("/advertisements/my-list");
+      // getAdvertisementByIdHandler(advertisement.id.toString());
     } catch (error) {}
   };
   // const addCategoryAdvertisementHandler = async (formData: any) => {
@@ -121,9 +121,9 @@ const useAdvertisement = (
       console.log("PUT update Advertisement, formData: ", formData);
       console.log("advertisement.id", advertisementId)
         if(advertisementId){
-          await updateAdvertisement({ id: advertisementId, body: formData});
+          await updateAdvertisement({ id: advertisement.id.toString(), body: formData});
         }
-        getAdvertisementByIdHandler();
+        getAdvertisementByIdHandler(advertisement.id.toString());
     } catch (error) {}
   };
 

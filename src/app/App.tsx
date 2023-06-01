@@ -25,6 +25,10 @@ const App = () => {
           element={<PrivateRoute component={AdvertisementList} />}
         />
         <Route
+          path="/advertisements/:list/:name"
+          element={<PrivateRoute component={AdvertisementList} />}
+        />
+        <Route
           path="/advertisements/:list/:name/:id"
           element={<PrivateRoute component={AdvertisementList} />}
         />

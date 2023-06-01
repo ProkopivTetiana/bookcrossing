@@ -12,16 +12,11 @@ import useProfile from "../Profile/hooks/useProfile";
 import useAdvertisement from "./hooks/useAdvertisement";
 import useAdvertisementList from "../AdvertisementList/hooks/useAdvertisementList";
 import Select from "../../components/Select/Select";
+import { profile } from "console";
 
 const Advertisement = () => {
   const { id } = useParams();
   const [isEdit, setIsEdit] = useState<boolean>(false);
-  
-  const {
-    deleteAdvertisementByIDHandler,
-    getAdvertisementsByUserIdHandler,
-    profile,
-  } = useAdvertisementList();
 
   const {
     getCategoryHandler,
@@ -30,39 +25,40 @@ const Advertisement = () => {
     category,
     advertisement,
     categories,
+    profile,
   } = useAdvertisement(id);
 
   const {
     getUserNameHandler,
+    getUsersHandler,
+    users,
     profileName,
     register,
   } = useProfile();
   
   let newDate = new Date(advertisement.publicationDate)
-  let date = newDate.getDate();
-  let month = newDate.getMonth();
-  let year = newDate.getFullYear();
+  // let date = newDate.getDate();
+  // let month = newDate.getMonth();
+  // let year = newDate.getFullYear();
 
-  // const handleDeleteClick: React.MouseEventHandler<HTMLImageElement> = (event) => {
-  //   event.stopPropagation();
-  // };
-  const handleDeleteClick = () => {
-    deleteAdvertisementByIDHandler(advertisement.id);
-  };
 
   useEffect(() => {
-    getAdvertisementByIdHandler();
+    if(id){
+      getAdvertisementByIdHandler(id);
+    }
     getCategoriesHandler();
     getCategoryHandler(advertisement.categoryId);
-    getUserNameHandler();
-  }, []);
+    getUserNameHandler(advertisement.userId);
+    getUsersHandler();
+
+    }, [id]);
   
   return (
     <Layout>
       {/* <div className="flex flex-col bg-white shadow-md shadow-gray-400 rounded-lg w-full px-10 py-3 gap-4 "> */}
       <Paper childrenClassName="flex-col px-10 py-3 gap-4 w-full">
         <div className="flex justify-end items-center">
-          {advertisement.id.toString() == id && (
+          {advertisement.userId == profile.id.toString() && (
             <div className="flex w-1/6">
               {!isEdit && (
                 <Button
@@ -93,11 +89,11 @@ const Advertisement = () => {
             className={`flex text-orange-600 bg-orange-100 border-[1px] border-orange-400 w-12 h-12 rounded-full flex items-center justify-center uppercase `}
             style={{ fontSize: 14 }}
           >
-            {`${profileName.firstName.slice(0, 1)}${profileName.lastName.slice(0, 1)}`}
-        </div>
+            {`${users.find((users) => users.id.toString() === advertisement.userId)?.firstName?.slice(0, 1)}${users.find((users) => users.id.toString() === advertisement.userId)?.lastName?.slice(0, 1)}`}
+           </div>
           <div className="flex flex-col justify-around h-full gap-8">
             <div className="flex text-xl text-slate-900 gap-4">
-              <div>{profileName.firstName} {profileName.lastName}</div>
+              <div>{users.find((users) => users.id.toString() === advertisement.userId)?.firstName} {users.find((users) => users.id.toString() === advertisement.userId)?.lastName}</div>
             </div>
           </div>
         </div>
@@ -130,15 +126,15 @@ const Advertisement = () => {
                 <div>
                   {!isEdit && (
                     <div className="text-sm font-medium text-slate-900">
-                      Автор: {advertisement.authorFullName}
+                      Автор: {advertisement.bookAuthorFullName}
                     </div>
                   )}
                   {isEdit && (
                     <Input
                       label="Автор:"
                       inputClassName="border-orange-600 hover:bg-opacity-80 focus:bg-opacity-60"
-                      value={advertisement.authorFullName}
-                      name="authorFullName"
+                      value={advertisement.bookAuthorFullName}
+                      name="bookAuthorFullName"
                       type="text"
                       register={register}
                     />
@@ -157,7 +153,7 @@ const Advertisement = () => {
                       inputClassName="border-orange-600 hover:bg-opacity-80 focus:bg-opacity-60"
                       value={advertisement.publicationYear}
                       name="publicationYear"
-                      type="text"
+                      type="number"
                       register={register}
                     />
                   )}
@@ -166,11 +162,11 @@ const Advertisement = () => {
                 <div>
                   {!isEdit && (
                     <div className="text-sm font-medium text-slate-900">
-                      Категорія: {category.name}
+                      Категорія: {categories.find((category) => category.id === advertisement.categoryId)?.name}
                     </div>
                   )}
                   {isEdit && (
-                    <Select name="categoryId" options={categories} register={register}/>
+                    <Select label="Категорія:"  name="categoryId" options={categories} register={register}/>
                   )}
                 </div>
               </div>
@@ -212,10 +208,13 @@ const Advertisement = () => {
             />
           )}
         </div>
-        <div className="flex justify-between" >
-          <div>Контактна інформація:</div>
-          <div className="text-orange-600" >{profileName.contactInfo}</div>
-        </div>
+        {!isEdit && (
+          <div className="flex justify-between" >
+            <div>Контактна інформація:</div>
+            <div className="text-orange-600" >{profileName.contactInfo}</div>
+          </div>
+        )} 
+        
       
       </Paper>
     </Layout>

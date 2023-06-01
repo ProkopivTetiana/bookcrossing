@@ -4,7 +4,7 @@ import { AdvertisementType } from "../../types/Advertisement";
 const advertisementState: AdvertisementType = {
   id: 0,
   title: "",
-  authorFullName: "",
+  bookAuthorFullName: "",
   publicationYear: 0,
   userId: "",
   description: "",
@@ -18,7 +18,7 @@ const advertisementListState: AdvertisementType[] = [
   {
     id: 0,
     title: "",
-    authorFullName: "",
+    bookAuthorFullName: "",
     publicationYear: 0,
     userId: "",
     description: "",

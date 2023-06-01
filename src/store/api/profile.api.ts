@@ -10,15 +10,21 @@ export const profileApi = createApi({
   reducerPath: "profileApi",
   baseQuery,
   endpoints: (builder) => ({
-    getUser: builder.mutation({
+      getUser: builder.mutation({
         query: () => ({
           url: "/profile",
           method: "GET",
         }),
       }),
-      getUserName: builder.mutation({
+      getUsers: builder.mutation({
         query: () => ({
-          url: "/profile/name/{id}",
+          url: "/users",
+          method: "GET",
+        }),
+      }),
+      getUserName: builder.mutation({
+        query: (id) => ({
+          url: `/profile/name/${id}`,
           method: "GET",
         }),
       }),
@@ -28,8 +34,8 @@ export const profileApi = createApi({
       UpdateUserRequestType
     >({
       query: ({ id, body }) => ({
-        url: `/profile`,
-        method: "PUT",
+        url: `/profile/${id}`,
+        method: "PATCH",
         body,
       }),
     }),
@@ -38,6 +44,7 @@ export const profileApi = createApi({
 
 export const {
   useGetUserMutation,
+  useGetUsersMutation,
   useGetUserNameMutation,
   useUpdateUserMutation,
 } = profileApi;

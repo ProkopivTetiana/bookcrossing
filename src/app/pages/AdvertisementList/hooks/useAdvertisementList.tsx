@@ -10,9 +10,9 @@ import { AdvertisementType } from "../../../../types/Advertisement";
 
 
 const useAdvertisementList = (
-  advertisementId? : string,
-  atId? : string,
-  Id? : string,
+  // advertisementId? : string,
+  // atId? : string,
+  // Id? : string,
 ) => {
   const navigate = useNavigate();
 
