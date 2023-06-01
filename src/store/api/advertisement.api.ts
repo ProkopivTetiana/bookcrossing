@@ -18,26 +18,26 @@ export const advertisementApi = createApi({
         }),
       }),
     getAdvertisementById: builder.mutation({
-      query: ({id}) => ({
+      query: (id) => ({
         url: `/advertisements/${id}`,
         method: "GET",
       }),
     }),
     getAdvertisementsByCategory: builder.mutation({
-      query: ({categoryId}) => ({
+      query: (categoryId) => ({
         url: `/advertisements/categories/${categoryId}`,
         method: "GET",
       }),
     }),
     getAdvertisementsByUserId: builder.mutation({
-      query: ({userId}) => ({
+      query: (userId) => ({
         url: `/advertisements/profile/${userId}`,
         method: "GET",
       }),
     }),
     searchAdvertisementsByName: builder.mutation({
-      query: ({name}) => ({
-        url: `/advertisements/${name}`,
+      query: (name) => ({
+        url: `/advertisements/search/${name}`,
         method: "GET",
       }),
     }),

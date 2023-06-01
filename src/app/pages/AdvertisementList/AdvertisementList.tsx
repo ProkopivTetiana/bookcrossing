@@ -11,9 +11,9 @@ import TitleSticker from "../../components/TitleSticker/TitleSticker";
 
 const AdvertisementList = () => {
   const { list, name, id } = useParams();
-  console.log("list",list)
-  console.log("name",name)
-  console.log("id",id)
+  console.log("list =======================",list)
+  console.log("name=========================",name)
+  console.log("id============================",id)
   const {
     profile,
     advertisementList,
@@ -49,7 +49,7 @@ const AdvertisementList = () => {
         {list && list === "my-list" && <TitleSticker text="Мої оголошення" />}
         {list && list === "my-list" && <Button className="w-5/12" to={"/create-advertisement"}>Створити оголошення</Button>}
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex gap-4 flex-wrap">
         {advertisementList && advertisementList.map((item, index) => 
           <AdvertisementCard key={index} advertisement={item}/>
         )}

@@ -10,6 +10,15 @@ const profileState: UserType = {
     repeatPassword: "",
     contactInfo: "",
 };
+const usersState: UserType[] = [{
+  id: 0,
+  email: "",
+  password: "",
+  firstName: "",
+  lastName: "",
+  repeatPassword: "",
+  contactInfo: "",
+}];
 
 const profileNameState:UserNameType = {
   firstName: "",
@@ -21,6 +30,7 @@ const slice = createSlice({
   name: "profile",
   initialState: {
     profile: profileState,
+    users: usersState,
     profileName: profileNameState,
   },
   reducers: {
@@ -30,6 +40,12 @@ const slice = createSlice({
     ) => {
       state.profile = action.payload;
     },
+    setUsers: (
+      state, 
+      action: PayloadAction<UserType[]>
+  ) => {
+    state.users = action.payload;
+  },
     setProfileName: (
       state, 
       action: PayloadAction<UserType>

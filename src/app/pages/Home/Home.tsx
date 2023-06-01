@@ -17,6 +17,7 @@ const Home = () => {
 
   useEffect(() => {
     getAllAdvertisementsHandler();
+    console.log("----------advertisementList---------------", advertisementList);
   }, []);
 
   return (

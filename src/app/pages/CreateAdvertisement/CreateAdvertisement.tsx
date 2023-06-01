@@ -68,7 +68,7 @@ const CreateAdvertisement = () => {
               <Input
                 label="Назва книги"
                 inputClassName="border-orange-600 hover:bg-opacity-80 focus:bg-opacity-60"
-                name="name"
+                name="title"
                 type="text"
                 register={register}
               />

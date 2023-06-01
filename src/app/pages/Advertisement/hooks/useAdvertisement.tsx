@@ -46,10 +46,7 @@ const useAdvertisement = (
 
   const getAdvertisementByIdHandler = async (id:string) => {
     try {
-      console.log("id id advertisementId",id)
       const advertisement = await getAdvertisementById(id).unwrap();
-      console.log("GET advertisement by id", advertisement);
-      console.log("advertisement id", id);
       setAdvertisement(advertisement);
     } catch (error) {}
   };
@@ -84,7 +81,8 @@ const useAdvertisement = (
       console.log("POST add New Advertisement {formData}", formData);
       // await addNewAdvertisement({...formData, departmentId: departmentId, teacherId: teacherId, academicYearId : academicYearId }).unwrap();
       await addNewAdvertisement(formData,).unwrap();
-      getAdvertisementByIdHandler(advertisement.id.toString());
+      navigate("/advertisements/my-list");
+      // getAdvertisementByIdHandler(advertisement.id.toString());
     } catch (error) {}
   };
   // const addCategoryAdvertisementHandler = async (formData: any) => {

@@ -10,9 +10,15 @@ export const profileApi = createApi({
   reducerPath: "profileApi",
   baseQuery,
   endpoints: (builder) => ({
-    getUser: builder.mutation({
+      getUser: builder.mutation({
         query: () => ({
           url: "/profile",
+          method: "GET",
+        }),
+      }),
+      getUsers: builder.mutation({
+        query: () => ({
+          url: "/users",
           method: "GET",
         }),
       }),
@@ -38,6 +44,7 @@ export const profileApi = createApi({
 
 export const {
   useGetUserMutation,
+  useGetUsersMutation,
   useGetUserNameMutation,
   useUpdateUserMutation,
 } = profileApi;

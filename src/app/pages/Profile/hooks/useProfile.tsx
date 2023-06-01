@@ -3,7 +3,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { UserType } from "../../../../types/UserType";
 import { useTypedSelector } from "../../../../hooks/useTypedSelector";
 import { useActions } from "../../../../hooks/useActions";
-import { useGetUserMutation, useGetUserNameMutation, useUpdateUserMutation } from "../../../../store/api/profile.api";
+import { useGetUserMutation, useGetUserNameMutation, useGetUsersMutation, useUpdateUserMutation } from "../../../../store/api/profile.api";
 
 //types
 
@@ -21,11 +21,12 @@ const useProfile = () => {
     reset,
   } = useForm<UserType | FieldValues>();
 
-  const { profile, profileName} = useTypedSelector((state) => state.profile);
-  const { setProfile, setProfileName } = useActions();
+  const { profile, users, profileName} = useTypedSelector((state) => state.profile);
+  const { setProfile, setProfileName, setUsers } = useActions();
 
   //api
   const [getUser] = useGetUserMutation();
+  const [getUsers] = useGetUsersMutation();
   const [updateUser] = useUpdateUserMutation();
   const [getUserName] = useGetUserNameMutation();
   // const [getUser] = useGetUserMutation();
@@ -36,6 +37,13 @@ const useProfile = () => {
       const profile = await getUser(null).unwrap();
       console.log("GET profile", profile);
       setProfile(profile);
+    } catch (error) {}
+  };
+  const getUsersHandler = async () => {
+    try {
+      const users = await getUsers(null).unwrap();
+      console.log("GET users", users);
+      setUsers(users);
     } catch (error) {}
   };
   const getUserNameHandler = async (id: string) => {
@@ -64,9 +72,11 @@ const updateUserHandler = async (formData: any) => {
     backendErrors,
     profile,
     profileName,
+    users,
     getUserHandler,
     updateUserHandler,
     getUserNameHandler,
+    getUsersHandler,
   };
 };
 
