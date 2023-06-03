@@ -64,7 +64,7 @@ const useAdvertisementList = (
   };
   const searchAdvertisementsByNameHandler = async (name: string) => {
     try {
-      const advertisementList = await searchAdvertisementsByName(name).unwrap();
+      const advertisementList = await searchAdvertisementsByName({title: name}).unwrap();
       console.log("GET advertisement List by name", advertisementList);
       console.log("advertisement name", name);
       setAdvertisementList(advertisementList);

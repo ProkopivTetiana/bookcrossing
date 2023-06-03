@@ -87,7 +87,7 @@ const CreateAdvertisement = () => {
                     label="Рік випуску:"
                     inputClassName="border-orange-600 hover:bg-opacity-80 focus:bg-opacity-60"
                     name="publicationYear"
-                    type="text"
+                    type="number"
                     register={register}
                   />
                   <Select label="Категорія:" name="categoryId" options={categories} register={register}/>

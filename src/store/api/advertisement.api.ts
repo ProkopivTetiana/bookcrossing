@@ -3,9 +3,12 @@ import { FieldValues } from "react-hook-form";
 import { baseQuery } from "../baseQuery";
 import { MessageResponseType } from "../../types/GlobalType";
 import { UpdateUserRequestType } from "../../types/UserType";
-import { AddAdvertisementType, UpdateAdvertisementRequestType } from "../../types/Advertisement";
+import { AddAdvertisementType, AdvertisementType, UpdateAdvertisementRequestType } from "../../types/Advertisement";
 
 //types
+type LocalType = {
+  title: string;
+};
 
 export const advertisementApi = createApi({
   reducerPath: "advertisementApi",
@@ -35,10 +38,14 @@ export const advertisementApi = createApi({
         method: "GET",
       }),
     }),
-    searchAdvertisementsByName: builder.mutation({
-      query: (name) => ({
-        url: `/advertisements/search/${name}`,
+    searchAdvertisementsByName: builder.mutation<
+      AdvertisementType[],
+      LocalType
+    >({
+      query: (body) => ({
+        url: `/advertisements/search`,
         method: "GET",
+        body,
       }),
     }),
 
